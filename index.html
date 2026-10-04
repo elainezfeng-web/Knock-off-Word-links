@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Links — Bostonian Times</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <header class="masthead">
+      <p class="eyebrow">THE BOSTONIAN TIMES <span>•</span> DAILY GAME</p>
+      <div class="masthead-row">
+        <h1>Word Links</h1>
+        <div class="masthead-actions"><button id="historyButton" class="button button-quiet" type="button">History</button><button id="replayButton" class="button button-quiet" type="button">Replay ↻</button></div>
+      </div>
+      <p class="dek">Build the shortest word bridge between the two words.</p>
+    </header>
+
+    <section class="game-layout" aria-label="Word Links game">
+      <div class="board-wrap">
+        <div class="board-labels"><span>START</span><span>FINISH</span></div>
+        <div id="board" class="board" role="grid" aria-label="15 by 15 Word Links grid"></div>
+        <p class="tip"><span class="tip-mark">i</span> Start on any letter. Your word can cross one or several links.</p>
+      </div>
+
+      <aside class="controls">
+        <div class="target-card">
+          <p class="eyebrow">CONNECT</p>
+          <div class="targets"><span id="startWord">BOSTON</span><span class="arrow">→</span><span id="finishWord">TIMES</span></div>
+        </div>
+        <div class="score-card">
+          <div><span class="eyebrow">YOUR SCORE</span><strong id="score">0</strong></div>
+          <div class="moves"><span class="eyebrow">LINKS</span><strong id="linkCount">0</strong></div>
+        </div>
+        <form id="wordForm" class="word-form">
+          <label for="wordInput">Add a word</label>
+          <div class="input-row"><input id="wordInput" type="text" maxlength="15" autocomplete="off" placeholder="Type a word" /><button class="button" type="submit">Place</button></div>
+          <div class="placement-row"><label><input type="radio" name="direction" value="across" checked /> Across</label><label><input type="radio" name="direction" value="down" /> Down</label></div>
+          <p id="instruction" class="form-hint">Click a square—or a letter already on the board—to preview your word.</p>
+        </form>
+        <div id="message" class="message" role="status" aria-live="polite">Click any empty square to get started.</div>
+        <details class="how-to"><summary>How to play</summary><p>Type a word, choose a direction, and click a square to preview it. It must be in our word list, fit on the grid, and share at least one matching letter with the words already there. Make a chain from the first word to the last.</p></details>
+      </aside>
+    </section>
+
+    <section id="debugPanel" class="debug-panel" hidden aria-label="Debug menu">
+      <div class="debug-heading"><div><p class="eyebrow">HIDDEN TOOL</p><h2>Daily puzzle debugger</h2></div><button id="closeDebug" class="debug-close" type="button">Close</button></div>
+      <p>Preview another seeded date. This changes the puzzle locally for testing.</p>
+      <div class="debug-controls"><button id="previousDate" type="button">← Previous</button><input id="debugDate" type="date" /><button id="nextDate" type="button">Next →</button><button id="applyDate" class="button" type="button">Load date</button><button id="resetHistory" type="button">Reset saved runs</button></div>
+      <div id="debugDates" class="debug-dates"></div>
+    </section>
+
+    <section id="historyPanel" class="history-panel" hidden aria-label="Game history">
+      <div class="debug-heading"><div><p class="eyebrow">YOUR ARCHIVE</p><h2>Game history</h2></div><button id="closeHistory" class="debug-close" type="button">Close</button></div>
+      <p>Saved on this device. Click a date to see the puzzle and your solution.</p>
+      <div id="historyList" class="history-list"></div>
+    </section>
+
+    <footer><span>Vol. 129</span><span>Boston, Massachusetts</span><span id="date"></span></footer>
+  </main>
+  <script defer src="app.js"></script>
+  <script defer src="word-list.js"></script>
+</body>
+</html>
